@@ -27,10 +27,12 @@ public class PracticeApplication {
 	}
 
 	private static boolean checkAnagrams(String first, String second) {
-		return false;
+		Map<Character, Integer> firstMap = storeMap(first);
+		Map<Character, Integer> secondMap = storeMap(second);
+		return firstMap.equals(secondMap);
 	}
 
-	private static void printDuplicate(String name){
+	public static Map<Character, Integer> storeMap(String name){
 		char[] nameArr = name.toCharArray();
 		Map<Character, Integer> countMap = new HashMap<>();
 		for(int i =0; i<nameArr.length ;i++){
@@ -40,11 +42,17 @@ public class PracticeApplication {
 				countMap.put(nameArr[i],1);
 			}
 		}
+		return countMap;
+	}
+
+	private static void printDuplicate(String name){
+		Map<Character,Integer> countMap = storeMap(name);
 		Set<Map.Entry<Character,Integer>> entrySet = countMap.entrySet();
 		for(Map.Entry<Character, Integer> entry : entrySet){
 			if(entry.getValue() > 1)
 				System.out.println(entry.getKey() + " : " + entry.getValue());
 		}
 	}
+
 
 }
